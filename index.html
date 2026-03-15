@@ -1,87 +1,530 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Programme Retour d’Expatriation Stratégique</title>
-<style>
-body{font-family:Montserrat,Arial,sans-serif;margin:0;background:#fff;color:#103EB8}
-.container{max-width:1000px;margin:auto;padding:40px 20px}
-header{display:flex;align-items:center;gap:20px;margin-bottom:30px}
-header img{width:110px;height:110px;object-fit:contain}
-h1{font-size:38px;margin:10px 0}
-.lead{font-size:18px;margin-bottom:25px}
-.cta{display:flex;justify-content:center;margin:30px 0}
-.cta a{background:#F9902A;color:white;padding:16px 32px;border-radius:40px;
-text-decoration:none;font-weight:bold;font-size:18px}
-.card{background:#f8fbff;border-radius:18px;padding:24px;margin-top:24px}
-footer{background:#103EB8;color:white;margin-top:40px;padding:25px;border-radius:20px}
-footer a{color:white}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programme Retour d’Expatriation Stratégique</title>
+  <style>
+    :root {
+      --blue: #103EB8;
+      --orange: #F9902A;
+      --light-blue: #C3E7EC;
+      --powder: #FCD3C6;
+      --coral: #DE5858;
+      --white: #FFFFFF;
+      --text: #103EB8;
+      --shadow: 0 10px 30px rgba(16, 62, 184, 0.10);
+      --radius: 22px;
+      --max-width: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Montserrat", Arial, sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus-visible {
+      text-decoration: underline;
+    }
+
+    .page {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(195,231,236,0.20), rgba(252,211,198,0.24));
+      border: 2px solid rgba(16, 62, 184, 0.08);
+      border-radius: 32px;
+      padding: 36px;
+      box-shadow: 0 18px 40px rgba(16, 62, 184, 0.10);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -80px auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(249,144,42,0.18), rgba(249,144,42,0));
+      pointer-events: none;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand img {
+      width: 94px;
+      height: 94px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: var(--white);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.08;
+      color: var(--blue);
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 14px;
+    }
+
+    .lead {
+      max-width: 760px;
+      font-size: 1.16rem;
+      margin: 0 auto 22px;
+      text-align: center;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 2px solid transparent;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #F9902A, #DE5858);
+      color: var(--white);
+      box-shadow: 0 14px 30px rgba(222, 88, 88, 0.22);
+      font-size: 1.12rem;
+      padding: 18px 38px;
+      min-height: 62px;
+      min-width: 320px;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--blue);
+      border-color: rgba(16, 62, 184, 0.18);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.95fr;
+      gap: 22px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid rgba(16, 62, 184, 0.08);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 1.45rem;
+      color: var(--blue);
+    }
+
+    .meta-list,
+    .check-list,
+    .docs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .meta-list li,
+    .check-list li,
+    .docs-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(16, 62, 184, 0.08);
+    }
+
+    .meta-list li:last-child,
+    .check-list li:last-child,
+    .docs-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .section {
+      margin-top: 28px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--blue);
+      margin: 0 0 16px;
+    }
+
+    .intro-box {
+      background: linear-gradient(180deg, rgba(195,231,236,0.22), rgba(255,255,255,1));
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid rgba(16, 62, 184, 0.08);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(16, 62, 184, 0.08);
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .accordion {
+      display: grid;
+      gap: 14px;
+    }
+
+    details {
+      border: 1px solid rgba(16, 62, 184, 0.12);
+      border-radius: 18px;
+      padding: 0;
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    details[open] {
+      box-shadow: var(--shadow);
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 18px 22px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: rgba(195,231,236,0.16);
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    .summary-text {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    .module-number {
+      color: var(--orange);
+      font-weight: 800;
+    }
+
+    .details-content {
+      padding: 20px 22px 22px;
+    }
+
+    .details-content p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .notice {
+      background: rgba(252,211,198,0.38);
+      border-left: 6px solid var(--coral);
+      padding: 16px 18px;
+      border-radius: 14px;
+      margin-top: 16px;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 24px;
+      border-radius: 22px;
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    footer h2,
+    footer a {
+      color: var(--white);
+    }
+
+    footer p {
+      margin: 8px 0;
+    }
+
+    .small {
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      .card,
+      .intro-box,
+      footer {
+        padding: 20px;
+      }
+
+      .brand img {
+        width: 76px;
+        height: 76px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
+    }
+  </style>
 </head>
-
 <body>
+  <main class="page">
+    <header class="hero" aria-labelledby="formation-title">
+      <div class="hero-top">
+        <div class="brand">
+          <img src="sticker.jpg" alt="Logo Marie Tallot Coaching" />
+          <div>
+            <span class="badge">Programme en ligne · Démarrage le 7 avril 2026</span>
+          </div>
+        </div>
+      </div>
 
-<div class="container">
+      <h1 id="formation-title">Programme Retour d’Expatriation Stratégique</h1>
+      <p class="lead">
+        Structurer stratégiquement son retour professionnel après une expatriation, clarifier son positionnement et construire un plan d’action réaliste, cohérent et opérationnel.
+      </p>
 
-<header>
-<img src="sticker.jpg" alt="Logo Marie Tallot Coaching">
-<div>
-<div style="background:#103EB8;color:white;padding:6px 12px;border-radius:20px;display:inline-block;font-size:14px">
-Programme en ligne · Démarrage le 7 avril 2026
-</div>
-</div>
-</header>
+      <div class="cta-row">
+        <a class="btn btn-primary btn-cta" href="https://calendly.com/marie-tallot/appel-clarifier-votre-retour-professionnel" target="_blank" rel="noopener noreferrer">Réserver un diagnostic</a>
+      </div>
+      <p class="small" style="text-align:center; margin: 8px 0 0; color: var(--blue); font-weight: 600;">
+        Appel de 20 minutes pour clarifier votre situation, vos enjeux et vérifier si le programme est adapté.
+      </p>
 
-<h1>Programme Retour d’Expatriation Stratégique</h1>
+      <section class="section hero-grid" aria-label="Présentation rapide de la formation">
+        <article class="card">
+          <h2>Pourquoi ce programme ?</h2>
+          <p>
+            À l’approche du retour, beaucoup de femmes expatriées se retrouvent face à une réflexion professionnelle encore diffuse : postes accessibles difficiles à identifier, expérience internationale mal valorisée, réseau éloigné, marché peu lisible.
+          </p>
+          <div class="notice">
+            Le retour ne se résume pas à une relocalisation. C’est une transition professionnelle stratégique qui demande méthode, lisibilité et mise en action.
+          </div>
+        </article>
 
-<p class="lead">
-Structurer stratégiquement son retour professionnel après une expatriation,
-clarifier son positionnement et construire un plan d’action réaliste.
-</p>
+        <aside class="card">
+          <h2>Repères essentiels</h2>
+          <ul class="meta-list">
+            <li><strong>Format :</strong> 5 séances collectives de 2 heures</li>
+            <li><strong>Complément :</strong> 1 séance de coaching individuel après mise en action</li>
+            <li><strong>Public :</strong> femmes expatriées francophones en réflexion ou en phase de retour</li>
+            <li><strong>Objectif :</strong> transformer une réflexion diffuse en stratégie professionnelle structurée</li>
+          </ul>
+        </aside>
+      </section>
+    </header>
 
-<div class="cta">
-<a href="https://calendly.com/marie-tallot/appel-clarifier-votre-retour-professionnel">
-Réserver un diagnostic
-</a>
-</div>
+    <section class="section intro-box" aria-labelledby="objectif-section">
+      <p class="badge" style="background: rgba(16,62,184,0.08); color: var(--blue); margin-bottom: 14px;">Une approche stratégique, concrète et progressive</p>
+      <h2 id="objectif-section" class="section-title">La transformation visée</h2>
+      <p>
+        À l’issue du programme, vous repartez avec un positionnement clarifié, une meilleure compréhension de votre marché cible, une stratégie de retour structurée et une feuille de route concrète pour les mois qui suivent votre retour.
+      </p>
+      <div class="pill-row" aria-label="Compétences développées">
+        <span class="pill">Clarification du positionnement</span>
+        <span class="pill">Analyse du marché</span>
+        <span class="pill">Activation du réseau</span>
+        <span class="pill">Plan d’action réaliste</span>
+      </div>
+    </section>
 
-<div class="card">
-<h2>Pourquoi ce programme ?</h2>
-<p>
-Le retour d’expatriation est souvent une transition professionnelle complexe :
-marché mal identifié, réseau éloigné, expérience internationale difficile à valoriser.
-</p>
-</div>
+    <section class="section" aria-labelledby="programme-section">
+      <h2 id="programme-section" class="section-title">Programme détaillé</h2>
+      <div class="accordion">
+        <details>
+          <summary>
+            <span class="summary-text"><span class="module-number">01</span> Clarification de l’identité professionnelle</span>
+            <span aria-hidden="true">+</span>
+          </summary>
+          <div class="details-content">
+            <p>Analyse du parcours, identification des compétences transférables et formalisation d’une proposition de valeur professionnelle claire.</p>
+          </div>
+        </details>
 
-<div class="card">
-<h2>Repères essentiels</h2>
-<ul>
-<li>5 séances collectives de 2 heures</li>
-<li>1 séance de coaching individuel</li>
-<li>Public : femmes expatriées francophones</li>
-<li>Objectif : transformer une réflexion diffuse en stratégie claire</li>
-</ul>
-</div>
+        <details>
+          <summary>
+            <span class="summary-text"><span class="module-number">02</span> Définition du positionnement</span>
+            <span aria-hidden="true">+</span>
+          </summary>
+          <div class="details-content">
+            <p>Identification de directions professionnelles pertinentes et construction de scénarios de retour réalistes, cohérents avec votre parcours et vos contraintes.</p>
+          </div>
+        </details>
 
-<div class="card">
-<h2>Programme</h2>
-<ul>
-<li>Clarification de l’identité professionnelle</li>
-<li>Définition du positionnement</li>
-<li>Analyse du marché</li>
-<li>Activation du réseau</li>
-<li>Construction du plan d’action</li>
-</ul>
-</div>
+        <details>
+          <summary>
+            <span class="summary-text"><span class="module-number">03</span> Analyse du marché</span>
+            <span aria-hidden="true">+</span>
+          </summary>
+          <div class="details-content">
+            <p>Étude des secteurs cibles, lecture des opportunités réellement accessibles et choix d’une stratégie d’approche adaptée.</p>
+          </div>
+        </details>
 
-<footer>
-<h3>Marie Tallot Coaching</h3>
-<p>Coach professionnelle certifiée RNCP</p>
-<p><a href="mailto:marie.tallot@gmail.com">marie.tallot@gmail.com</a></p>
-<p>Formation accessible aux personnes en situation de handicap.</p>
-</footer>
+        <details>
+          <summary>
+            <span class="summary-text"><span class="module-number">04</span> Activation du réseau</span>
+            <span aria-hidden="true">+</span>
+          </summary>
+          <div class="details-content">
+            <p>Structuration d’une stratégie de networking, réactivation du capital relationnel et préparation des échanges professionnels clés.</p>
+          </div>
+        </details>
 
-</div>
+        <details>
+          <summary>
+            <span class="summary-text"><span class="module-number">05</span> Construction du plan d’action</span>
+            <span aria-hidden="true">+</span>
+          </summary>
+          <div class="details-content">
+            <p>Élaboration d’une feuille de route opérationnelle pour sécuriser les premiers mois du retour et passer à l’action avec méthode.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Informations complémentaires">
+      <article class="card">
+        <h2>Pour qui ?</h2>
+        <ul class="check-list">
+          <li>Personnes en situation d’expatriation ou de retour</li>
+          <li>Professionnelles souhaitant structurer leur trajectoire</li>
+          <li>Femmes francophones voulant aborder leur retour avec une approche stratégique</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section two-col" aria-label="Éléments de réassurance">
+      <article class="card">
+        <h2>Ce que vous obtenez concrètement</h2>
+        <ul class="check-list">
+          <li>Une vision plus claire de votre positionnement</li>
+          <li>Des pistes réalistes alignées avec votre parcours</li>
+          <li>Une méthode pour réactiver votre réseau avec pertinence</li>
+          <li>Un plan d’action opérationnel pour passer à l’étape suivante</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>Avant de vous inscrire</h2>
+        <p>
+          Le diagnostic permet de vérifier que le programme correspond bien à votre situation, à votre temporalité et à vos objectifs professionnels.
+        </p>
+        <div class="cta-row" style="justify-content:flex-start; margin-top:18px;">
+          <a class="btn btn-primary" href="https://calendly.com/marie-tallot/appel-clarifier-votre-retour-professionnel" target="_blank" rel="noopener noreferrer">Prendre rendez-vous</a>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <h2>Marie Tallot Coaching</h2>
+      <p>Coach professionnelle certifiée RNCP</p>
+      <p><a href="mailto:marie.tallot@gmail.com">marie.tallot@gmail.com</a></p>
+      <p class="small">Formation accessible aux personnes en situation de handicap. Un échange préalable permet d’étudier les aménagements possibles selon les besoins.</p>
+    </footer>
+  </main>
 </body>
 </html>
